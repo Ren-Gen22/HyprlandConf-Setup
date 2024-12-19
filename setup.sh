@@ -11,61 +11,92 @@
 #                                                                        $$\   $$ |              
 #                                                                        \$$$$$$  |              
 #                                                                         \______/               
-# Try to use it without any change in content...
+# Optimized with default shell change.
 
-yecho(){ # Yellow text
-	echo -e "\e[93;1m$@\e[0m"
+yecho(){ # Function for yellow text
+    echo -e "\e[93;1m$@\e[0m"
 }
 
-# git gud
-sudo pacman -S git
+recho(){ # red text
+	echo -e "\e[93;31m$@\e[0m"
+}
+# Ensure the script is run as root
+if [[ $EUID -ne 0 ]]; then
+    recho "Please run as root (e.g., sudo $0)"
+    exit 1
+fi
 
+# Git installation and configuration
+sudo pacman -S --noconfirm git
 git config --global init.defaultBranch main
+# Uncomment and configure Git user if needed
 # git config --global user.email "abhishekrenjan33@gmail.com"
 # git config --global user.name "Ren-Gen22"
 
+yecho "Starting to install basic packages..."
 
-echo "Starting to Install basic packages"
-#Audio
-sudo pacman -S pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber
+# Audio and multimedia
+sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber
 
-#yay!!
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
+# yayyyyy!!!!! 
+git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
+cd ..
+rm -rf yay
 
-#basic
-sudo pacman -S nodejs npm zsh ttf-hack-nerd 
-yay -S spaceship-prompt wlogout 
+# Basic utilities
+sudo pacman -S --noconfirm nodejs npm zsh ttf-hack-nerd
+yay -S --noconfirm spaceship-prompt wlogout
 
-#Hypr needs
-sudo pacman -S hypridle hyprlock hyprpaper waybar dunst polkit-kde-agent
 
-#General utils
-sudo pacman -S firefox thunar neovim udisks2 viewnior zathura libreoffice-still github-cli network-manager-applet pavucontrol
+# Hyprland-related packages
+sudo pacman -S --noconfirm hypridle hyprlock hyprpaper waybar dunst polkit-kde-agent
 
-sudo pacman -S wofi rofi cliphist vlc discord
+# General utilities
+sudo pacman -S --noconfirm \
+    firefox thunar neovim udisks2 viewnior zathura libreoffice-still github-cli \
+    network-manager-applet pavucontrol wofi rofi cliphist vlc discord
 
-sudo pacman -S xdg-user-dirs papirus-icon-theme libnotify imagemagick
+# Additional utilities and system tweaks
+sudo pacman -S --noconfirm xdg-user-dirs papirus-icon-theme libnotify imagemagick
 xdg-user-dirs-update
 
-#sudo pacman -S steam wine steam-native qbittorrent # maybe if ya want uncomment this line
+# Font packages
+sudo pacman -S --noconfirm \
+    adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts \
+    noto-fonts-cjk noto-fonts-emoji ttf-dejavu ttf-liberation ttf-font-awesome \
+    ttf-material-design-icons
+# Adding installed fonts
+fc-cache -fv
 
-sudo pacman -S adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts noto-fonts noto-fonts-cjk noto-fonts-emoji
-sudo pacman -S ttf-dejavu ttf-liberation ttf-font-awesome ttf-material-design-icons
-fc-cache -fv # font installation
+# Filesystem utilities
+sudo pacman -S --noconfirm fuse3 ntfs-3g
 
-sudo pacman -S fuse3 ntfs-3g 
-
-# os-prober
-# cd /etc/default/  diasable-os-prober-false
-
+# Custom SDDM theme setup
+yecho "Applying Custom SDDM Theme"
 sudo cp -r ./custom /usr/share/sddm/themes/
-yecho "goto /usr/lib/sddm/sddm.conf.d/default.conf and line 40 after [Theme] change \"Current=custom\""
-pacman -S qt5-graphicaleffects qt5-quickcontrols qt5-quickcontrols2
+sudo sed -i 's/^Current=.*/Current=custom/' /usr/lib/sddm/sddm.conf.d/default.conf
+sudo pacman -S --noconfirm qt5-graphicaleffects qt5-quickcontrols qt5-quickcontrols2
 
-sudo pacman -S bluez bluez-utils
-sudo systemctl enable NetworkManager bluetooth
+# Bluetooth setup
+sudo pacman -S --noconfirm bluez bluez-utils
+sudo systemctl enable --now NetworkManager bluetooth
 
-echo "Copying Config Files..."
+yecho "Copying config files to ~/.config..."
+cp -r ./configs/* $HOME/.config 
 
-cp ./dunst/ ./gtk-3.0/ ./hypr/ ./kitty/ ./neofetch/ ./nvim/ ./waybar/ ./wofi/ $HOME/.config
+yecho "Setting ur default shell to Zsh"
+# Change the default shell to Zsh
+chsh -s $(which zsh)
 
+sudo chmod +x ./sfr/sfr.sh
+yecho "Setup completed successfully! Re-login to apply Zsh as your default shell."
+
+echo "Ready for a surprise!!!"
+echo "In 3.."
+sleep 1
+echo "2.."
+sleep 1
+echo "1"
+
+clear
+./sfr/sfr.sh
