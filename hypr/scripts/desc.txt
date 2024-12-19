@@ -1,0 +1,3 @@
+lowBat.sh          low battery indication
+touchOff.sh        Turn of ur trackpad at startup of hyprland
+touchpadToggle.sh  Toggle between on or off ur trackpad

@@ -1,0 +1,22 @@
+mod key ()=  - windows key
+
+ + q - Quit a window
+ + m - logout of Hyprland 
+ + e - File Manager (thunar)
+ + w - Browser (firefox)
+ + v - Float tab
+ + d - Menu
+ + 
+
+
+
+
+
+
+
+
+
+
+
+
+

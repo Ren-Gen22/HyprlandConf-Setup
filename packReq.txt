@@ -1,0 +1,93 @@
+﻿zsh 
+
+--hyprland uses
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl -o - https://raw.githubusercontent.com/denysdovhan/spaceship-zsh-theme/master/install.zsh | zsh
+polkit-kde-agent
+sudo nvim /etc/environment\
+echo $HYPRSHOT_DIR\
+
+
+--general
+pacman wlogout pavucontrol github-cli network-manager-applet wofi rofi cliphist docker vlc
+xdg-user-dirs papirus-icon-theme spotify discord
+heroic wine steam-native-runtime qbittorrent 
+git config --global init.defaultBranch main
+git config --global user.email "abhishekrenjan33@gmail.com"
+git config --global user.name "Ren-Gen22"
+xdg-user-dirs-update
+
+--fonts
+adobe-source-han-sans-otc-fonts adobe-source-han-serif-otc-fonts  noto-fonts  noto-fonts-cjk    
+ttf-dejavu ttf-liberation noto-fonts noto-fonts-cjk noto-fonts-emoji\
+ttf-font-awesome ttf-material-design-icons libnotify imagemagick
+fc-cache -fv
+
+cd /usr/lib/sddm/sddm.conf.d
+pacman -S qt5-graphicaleffects qt5-quickcontrols qt5-quickcontrols2
+
+--Network/bluetooth
+enable NetworkManager bluetooth
+pacman -S bluez bluez-utils
+
+yay -S asusctl manga-cli ani-cli
+
+#GRUB
+pacman -S fuse3 ntfs-3g os-prober
+cd /etc/default/  diasable-os-prober-false
+
+
+
+
+
+
+
+
+
+
+pulseaudio
+bluetooth
+pavucontrol
+gh(githubcli)
+
+
+waybar hypylock hypridle wlogout
+
+zsh
+zsh custom
+neofetch
+
+viewnior
+zathura (pdf)
+wofi
+thunar
+libre 
+nvim 
+asusctl
+
+ollama
+spotify 
+discord
+steam
+heroic
+vlc
+mc
+2048 term
+
+
+sudo pacman -S python-virtualenv
+npm nodejs
+docker
+postgres
+
+git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
+
+git clone https://github.com/dracula/wofi.git\
+
+
+git config --global user.email "abhishekrenjan33@gmail.com"
+: 1733332297:0;git config --global user.name "Ren-Gen22"
+
+__NV_PRIME_RENDER_OFFLOAD=1 __VK_LAYER_NV_optimus=NVIDIA_only 
+
+hack nerd font

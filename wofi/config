@@ -1,0 +1,8 @@
+[wofi]
+font = Hack Nerd Font 14
+sort_order=alphabetical
+allow_images=true
+colors=colors
+filter_rate=100
+allow_markup=true
+lines=15

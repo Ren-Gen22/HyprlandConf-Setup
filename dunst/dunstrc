@@ -1,0 +1,79 @@
+[global]
+    ### Display ###
+    monitor = 0
+    follow = mouse
+
+    ### Geometry ###
+    width = 300
+    height = 80
+    origin = top-right
+    offset = (5,10)
+    scale = 0
+    notification_limit = 10
+    corner_radius = 12
+    corners = all
+    gap_size = 5
+
+    ### Progress bar ###
+    progress_bar = true
+    progress_bar_height = 4
+    progress_bar_frame_width = 0
+    progress_bar_min_width = 200
+    progress_bar_max_width = 300
+    progress_bar_corner_radius = 2
+    progress_bar_corners = all
+
+    ### Text ###
+    font = Hack Nerd Font Mono 10
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = center
+    vertical_alignment = center
+    show_age_threshold = -1
+    ellipsize = end
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+
+    ### Icons ###
+    enable_recursive_icon_lookup = true
+    icon_theme = Papirus-Dark
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 64
+
+    ### Appearance ###
+    transparency = 50
+    separator_height = 0
+    padding = 12
+    horizontal_padding = 5
+    text_icon_padding = 8
+    frame_width = 2
+    frame_color = "#257efa"
+
+    ### History ###
+    sticky_history = yes
+    history_length = 10
+
+    ### Wayland ###
+    layer = overlay
+    force_xwayland = false
+
+[urgency_low]
+    background = "#1E1E2E"
+    foreground = "#A6ADC8"
+    timeout = 3
+
+[urgency_normal]
+    background = "#313244"
+    foreground = "#D9E0EE"
+    timeout = 6
+
+[urgency_critical]
+    background = "#F28FAD"
+    foreground = "#1E1E2E"
+    frame_color = "#F28FAD"
+    timeout = 0
+
