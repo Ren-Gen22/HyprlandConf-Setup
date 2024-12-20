@@ -39,13 +39,10 @@ yecho "Starting to install basic packages..."
 sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber
 
 # yayyyyy!!!!! 
-git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si --noconfirm
-cd ..
-rm -rf yay
-
+sudo chmod +x ./yayPckgs.sh
+./yayPckgs.sh
 # Basic utilities
 sudo pacman -S --noconfirm nodejs npm zsh ttf-hack-nerd
-yay -S --noconfirm spaceship-prompt wlogout
 
 
 # Hyprland-related packages
