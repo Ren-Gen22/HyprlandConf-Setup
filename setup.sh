@@ -40,7 +40,7 @@ sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack w
 
 # yayyyyy!!!!! 
 sudo chmod +x ./yayPckgs.sh
-./yayPckgs.sh
+sudo -u "$SUDO_USER" -- bash -c "export PATH=$PATH; ./yayPckgs.sh"
 # Basic utilities
 sudo pacman -S --noconfirm nodejs npm zsh ttf-hack-nerd
 
