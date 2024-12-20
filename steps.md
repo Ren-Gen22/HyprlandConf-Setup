@@ -1,6 +1,6 @@
 # Options to follow
 
-** try to install arch with these options **
+**try to install arch with these options** 
 
 archinstall
 
