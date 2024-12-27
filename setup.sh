@@ -71,8 +71,9 @@ sudo pacman -S --noconfirm fuse3 ntfs-3g
 # Custom SDDM theme setup
 yecho "Applying Custom SDDM Theme"
 sudo cp -r ./custom /usr/share/sddm/themes/
-sudo sed -i 's/^Current=.*/Current=custom/' /usr/lib/sddm/sddm.conf.d/default.conf
+sudo cp sddm.conf.d /etc/
 sudo pacman -S --noconfirm qt5-graphicaleffects qt5-quickcontrols qt5-quickcontrols2
+
 
 # Bluetooth setup
 sudo pacman -S --noconfirm bluez bluez-utils
@@ -83,7 +84,11 @@ cp -r ./configs/* $HOME/.config
 
 yecho "Setting ur default shell to Zsh"
 # Change the default shell to Zsh
-chsh -s $(which zsh)
+sudo chsh -s $(which zsh)
+
+##Make nvim config even available in sudo or root
+#sudo mkdir -p /root/.config
+#sudo ln -s ~/.config/nvim /root/.config/nvim
 
 sudo chmod +x ./sfr/sfr.sh
 yecho "Setup completed successfully! Re-login to apply Zsh as your default shell."
