@@ -13,6 +13,8 @@
 #                                                                         \______/               
 # Optimized with default shell change.
 
+curr=$(pwd)
+
 yecho(){ # Function for yellow text
     echo -e "\e[93;1m$@\e[0m"
 }
@@ -39,14 +41,14 @@ yecho "Starting to install basic packages..."
 sudo pacman -S --noconfirm pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber
 
 # yayyyyy!!!!! 
-sudo chmod +x ./yayPckgs.sh
+sudo chmod +x $curr/yayPckgs.sh
 sudo -u "$SUDO_USER" -- bash -c "export PATH=$PATH; ./yayPckgs.sh"
 # Basic utilities
 sudo pacman -S --noconfirm nodejs npm zsh ttf-hack-nerd
 
 
 # Hyprland-related packages
-sudo pacman -S --noconfirm hypridle hyprlock hyprpaper waybar dunst polkit-kde-agent
+sudo pacman -S --noconfirm hypridle hyprlock hyprpaper waybar dunst xwaylandvideobridge
 
 # General utilities
 sudo pacman -S --noconfirm \
@@ -70,7 +72,7 @@ sudo pacman -S --noconfirm fuse3 ntfs-3g
 
 # Custom SDDM theme setup
 yecho "Applying Custom SDDM Theme"
-sudo cp -r ./custom /usr/share/sddm/themes/
+sudo cp -r $curr/custom /usr/share/sddm/themes/
 sudo cp sddm.conf.d /etc/
 sudo pacman -S --noconfirm qt5-graphicaleffects qt5-quickcontrols qt5-quickcontrols2
 
@@ -80,11 +82,11 @@ sudo pacman -S --noconfirm bluez bluez-utils
 sudo systemctl enable --now NetworkManager bluetooth
 
 yecho "Copying config files to ~/.config..."
-cp -r ./configs/* $HOME/.config 
+cp -r $curr/configs/* $HOME/.config 
 
 yecho "Setting ur default shell to Zsh"
 # Change the default shell to Zsh
-sudo chsh -s $(which zsh)
+chsh -s $(which zsh)
 
 ##Make nvim config even available in sudo or root
 #sudo mkdir -p /root/.config
@@ -92,6 +94,9 @@ sudo chsh -s $(which zsh)
 
 sudo chmod +x ./sfr/sfr.sh
 yecho "Setup completed successfully! Re-login to apply Zsh as your default shell."
+
+echo "Press Enter to continue..."
+read
 
 echo "Ready for a surprise!!!"
 echo "In 3.."
