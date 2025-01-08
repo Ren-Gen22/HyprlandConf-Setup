@@ -81,6 +81,9 @@ sudo pacman -S --noconfirm qt5-graphicaleffects qt5-quickcontrols qt5-quickcontr
 sudo pacman -S --noconfirm bluez bluez-utils
 sudo systemctl enable --now NetworkManager bluetooth
 
+#systemctl --user enable mpris-proxy.service
+#systemctl --user start mpris-proxy.service
+
 yecho "Copying config files to ~/.config..."
 cp -r $curr/configs/* $HOME/.config 
 
