@@ -20,7 +20,7 @@ window#waybar {
   min-width: 0;
   padding: 0.3em 0.6em;
   margin: 5px 4px;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #181825;
   /*background-color: #1e1e2e;*/
   color: #cdd6f4;
@@ -61,7 +61,7 @@ window#waybar {
   min-height: 0;
   min-width: 0;
   padding: 0.3em 0.6em;
-  border-radius: 4px;
+  border-radius: 8px;
   margin: 5px 4px;
   /* background-color: #181825; */
 

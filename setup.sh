@@ -48,12 +48,13 @@ sudo pacman -S --noconfirm nodejs npm zsh ttf-hack-nerd
 
 
 # Hyprland-related packages
-sudo pacman -S --noconfirm hypridle hyprlock hyprpaper waybar dunst xwaylandvideobridge
+sudo pacman -S --noconfirm hypridle hyprlock hyprpaper hyprshot waybar mako dunst xwaylandvideobridge hyprpolkitagent
 
 # General utilities
 sudo pacman -S --noconfirm \
     firefox thunar neovim udisks2 viewnior zathura libreoffice-still github-cli \
-    network-manager-applet pavucontrol wofi rofi cliphist vlc discord
+    network-manager-applet pavucontrol wofi rofi cliphist vlc discord 
+#spoify-player
 
 # Additional utilities and system tweaks
 sudo pacman -S --noconfirm xdg-user-dirs papirus-icon-theme libnotify imagemagick

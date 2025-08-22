@@ -8,8 +8,8 @@
   "passthrough": false,
   "fixed-center": true,
   "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["custom/spotify", "custom/media"],
-  //"modules-center": ["custom/media"],
+  //  "modules-center": ["custom/spotifie", "custom/media"],
+//  "modules-center": ["custom/media"],
   "modules-right": [
     //"custom/brightness",
     "backlight",
@@ -19,8 +19,9 @@
     "clock#date",
     "clock#time",
     "tray",
-    "custom/power",
   ],
+
+  //"custom/power",
   "custom/brightness": {
     "exec": "$HOME/.config/waybar/bright.sh",
     "return-type": "json",
@@ -51,7 +52,7 @@
     "on-scroll-down": "playerctl --player=spotify previous",
   },
   "custom/media": {
-    "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py -x spotify", // --player spotify",
+    "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py -x spotify_player", // --player spotify",
     "format": "{} 󱏦",
     "return-type": "json",
     "on-click": "bash -c 'playerctl -l | grep -v spotify | head -n 1 | xargs -I {} playerctl --player={} play-pause'",
@@ -59,11 +60,12 @@
     "on-scroll-down": "bash -c 'playerctl -l | grep -v spotify | head -n 1 | xargs -I {} playerctl --player={} previous'",
   },
   "custom/spotifie": {
-    "format": "  {}",
+    "exec": "/usr/bin/python3 $HOME/.config/waybar/mediaplayer.py --player spotify",
+    "format": "{} ",
     "return-type": "json",
-    "on-click": "playerctl -p spotify play-pause",
-    "on-click-right": "playerctl -p spotify next",
-    "exec": "spotifatius monitor",
+    "on-click": "playerctl --player=spotify_player play-pause",
+    "on-scroll-up": "playerctl --player=spotify_player next",
+    "on-scroll-down": "playerctl --player=spotify_player previous",
   },
   "hyprland/workspaces": {
     "on-click": "activate",
@@ -86,7 +88,7 @@
   },
 
   "clock#date": {
-    "interval": 10,
+    "interval": 100,
     "format": "  {:L%a %d %b}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
@@ -99,15 +101,15 @@
   //   "format": "  {:L%a %d %b}",
   //   "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   // },
-  "cpu": {
-    "format": "  {usage}%",
-    "tooltip": true,
-    "interval": 1,
-  },
-  "memory": {
-    "interval": 5,
-    "format": "  {percentage}%",
-  },
+  // "cpu": {
+  //   "format": "  {usage}%",
+  //   "tooltip": true,
+  //   "interval": 1,
+  // },
+  // "memory": {
+  //   "interval": 5,
+  //   "format": "  {percentage}%",
+  // },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "  muted",
@@ -132,15 +134,17 @@
     "format": "⏻",
   },
   "battery": {
+    "bat": "BAT1",
+    "interval": 30,
     "states": {
       // "good": 95,
       "warning": 30,
       "critical": 15,
     },
     "format": "{capacity}% {icon}",
-    "format-full": "{capacity}% {icon}",
+    //"format-full": "{capacity}% {icon}",
     "format-charging": "{capacity}% 󰂄",
-    "format-plugged": "{capacity}% ",
+    //"format-plugged": "{capacity}% ",
     "format-alt": "{time} {icon}",
     // "format-good": "", // An empty format will hide the module
     // "format-full": "",

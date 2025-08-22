@@ -5,9 +5,9 @@
 
     ### Geometry ###
     width = 300
-    height = 80
+    height = (0,80)
     origin = top-right
-    offset = (5,10)
+    offset = 15x60  # Lower spawn position
     scale = 0
     notification_limit = 10
     corner_radius = 12
@@ -16,19 +16,19 @@
 
     ### Progress bar ###
     progress_bar = true
-    progress_bar_height = 4
+    progress_bar_height = 6  # Thicker bar
     progress_bar_frame_width = 0
     progress_bar_min_width = 200
     progress_bar_max_width = 300
-    progress_bar_corner_radius = 2
+    progress_bar_corner_radius = 3  # Smoother edges
     progress_bar_corners = all
 
     ### Text ###
-    font = Hack Nerd Font Mono 10
+    font = Hack Nerd Font Mono 12
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"
-    alignment = center
+    alignment = left
     vertical_alignment = center
     show_age_threshold = -1
     ellipsize = end
@@ -45,13 +45,13 @@
     max_icon_size = 64
 
     ### Appearance ###
-    transparency = 50
+    transparency = 20  # More transparent
     separator_height = 0
-    padding = 12
-    horizontal_padding = 5
-    text_icon_padding = 8
+    padding = 16  # More padding
+    horizontal_padding = 8
+    text_icon_padding = 10
     frame_width = 2
-    frame_color = "#257efa"
+    frame_color = "#074a82aa"  # Slight transparency
 
     ### History ###
     sticky_history = yes
@@ -64,16 +64,15 @@
 [urgency_low]
     background = "#1E1E2E"
     foreground = "#A6ADC8"
-    timeout = 3
+    timeout = 4  # Longer visibility
 
 [urgency_normal]
     background = "#313244"
     foreground = "#D9E0EE"
-    timeout = 6
+    timeout = 8  # Longer visibility
 
 [urgency_critical]
     background = "#F28FAD"
     foreground = "#1E1E2E"
     frame_color = "#F28FAD"
-    timeout = 0
-
+    timeout = 0  # Stays until dismissed

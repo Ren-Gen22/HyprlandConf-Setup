@@ -6,16 +6,16 @@ profile=$(asusctl profile -p | grep 'Active profile' | cut -d ' ' -f 4)
 
 case "$profile" in
     Performance)
-        dunstify " Performance"
+        notify-send " Performance"
         ;;
     Balanced)
-        dunstify " Balanced"
+        notify-send " Balanced"
         ;;
     Quiet)
-        dunstify " Silent"
+        notify-send " Silent"
         ;;
     *)
-        dunstify "Unknown profile!!"
+        notify-send "Unknown profile!!"
         ;;
 esac
 

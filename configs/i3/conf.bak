@@ -1,0 +1,216 @@
+
+### Basic Settings ###
+set $mod Mod4
+font pango:FiraCode Nerd Font 12
+
+### Catppuccin Colors ###
+set $rosewater #f5e0dc
+set $flamingo  #f2cdcd
+set $pink      #f5c2e7
+set $mauve     #cba6f7
+set $red       #f38ba8
+set $maroon    #eba0ac
+set $peach     #fab387
+set $yellow    #f9e2af
+set $green     #a6e3a1
+set $teal      #94e2d5
+set $sky       #89dceb
+set $sapphire  #74c7ec
+set $blue      #89b4fa
+set $lavender  #b4befe
+
+set $text      #cdd6f4
+set $subtext1  #bac2de
+set $subtext0  #a6adc8
+set $overlay2  #9399b2
+set $overlay1  #7f849c
+set $overlay0  #6c7086
+set $surface2  #585b70
+set $surface1  #45475a
+set $surface0  #313244
+
+set $base      #1e1e2e
+set $mantle    #181825
+set $crust     #11111b
+
+set $lock ~/.config/i3/scripts/lock.sh
+### NVIDIA Settings ###
+exec --no-startup-id nvidia-settings --assign CurrentMetaMode="nvidia-auto-select +0+0 {ForceFullCompositionPipeline=On}"
+exec --no-startup-id nvidia-settings -a '[gpu:0]/GPUPowerMizerMode=1'
+
+### Autostart Applications ###
+exec --no-startup-id dex --autostart --environment i3
+# exec --no-startup-id nm-applet
+# exec --no-startup-id blueman-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id dunst
+exec_always --no-startup-id bash -c "pkill -x picom; sleep 0.5; picom --experimental-backends --config ~/.config/picom/picom.conf"
+exec_always --no-startup-id killall polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh &
+exec --no-startup-id nitrogen --restore
+exec_always --no-startup-id setxkbmap -layout us
+exec --no-startup-id xset r rate 400 40
+exec ~/Scripts/touchpadOff.sh
+### Improved Power Management ###
+bindswitch --reload --locked lid:on exec systemctl suspend
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $lock 
+
+### Rofi
+bindsym $mod+d exec --no-startup-id ~/.config/rofi/launchers/launcher.sh
+#bindsym $mod+x exec --no-startup-id ~/.config/rofi/powermenu/powermenu.sh
+
+
+#bindsym $mod+d exec --no-startup-id dmenu_run
+### Focus and Killing Windows ###
+bindsym $mod+q kill
+# Disable focus following mouse
+focus_follows_mouse no
+
+# Disable mouse warping
+mouse_warping none
+### Window Movement ###
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# bindsym $mod+Shift+Left move left
+# bindsym $mod+Shift+Right move right
+# bindsym $mod+Shift+Up move up
+# bindsym $mod+Shift+Down move down
+
+bindsym $mod+Shift+f floating toggle; resize set 1200 700; move position center
+
+bindsym $mod+alt+h split h
+bindsym $mod+alt+v split v
+bindsym $mod+f fullscreen toggle
+
+### Workspace Management ###
+
+bindsym $mod+Tab focus next
+bindsym $mod+Shift+Tab focus prev
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+
+
+bindsym $mod+Shift+s move container to scratchpad
+bindsym $mod+s scratchpad show
+bindsym $mod+Shift+w move container to workspace current, floating disable
+# bindsym $mod+bracketleft workspace prev
+# bindsym $mod+bracketright workspace next
+# bindsym $mod+Shift+bracketleft move container to workspace prev
+# bindsym $mod+Shift+bracketright move container to workspace next
+
+### Media Controls ###
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
+
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && notify-send "Volume: $(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')"
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && notify-send "Volume: $(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}')"
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && notify-send "Audio $(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}')"
+#
+# bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5% && ~/Scripts/getBright.sh 
+# bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%- && ~/Scripts/getBright.sh
+
+# bindsym XF86AudioPlay exec playerctl play-pause
+# bindsym XF86AudioNext exec playerctl next
+# bindsym XF86AudioPrev exec playerctl previous
+
+bindsym $mod+t exec ~/Scripts/trackPad.sh
+
+### App Shortcuts ###
+bindsym $mod+Return exec kitty --single-instance
+bindsym $mod+e exec thunar
+bindsym $mod+w exec firefox
+
+bindsym Print exec flameshot gui
+bindsym Shift+Print exec flameshot full -p ~/Pictures/Screenshots
+
+bindsym $mod+Shift+m exec kitty -e btop
+
+### Floating Windows ###
+# for_window [class="pavucontrol"] floating enable, resize set 800 500, move position center
+# for_window [class="Thunar"] floating enable, resize set 1000 600, move position center
+# for_window [class="Blueman-manager"] floating enable, move position center
+# for_window [title="File Operation Progress"] floating enable, move position center
+# for_window [class="Gimp"] floating enable
+for_window [class="scratchpad"] move to scratchpad, floating enable, resize set 1200 800, move position center
+
+### Games ###
+for_window [class="steam"] fullscreen enable
+for_window [class="steam"] floating disable
+
+### Borders and Gaps ###
+client.focused          $lavender $base $text  $rosewater $lavender
+client.focused_inactive $surface1 $base $text  $surface1  $surface1
+client.unfocused        $surface0 $base $text  $surface0  $surface0
+client.urgent           $red      $base $red   $red       $red
+
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
+
+gaps inner 2
+gaps outer 2
+smart_gaps on
+
+### System Mode ###
+mode "system" {
+    bindsym l exec $lock, mode "default"
+    bindsym h exec systemctl suspend, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym s exec systemctl poweroff, mode "default"
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+    # Optional: You can also show a notification here, but it won't trigger just by mode activation
+    bindsym n exec --no-startup-id notify-send "Sys Mode Active"
+}
+bindsym $mod+x exec --no-startup-id notify-send "Sys Mode Active"; mode "system"
+
+### Resize
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    # Exit resize mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym n exec --no-startup-id notify-send "Resize Mode Active"
+}
+
+bindsym $mod+r exec --no-startup-id notify-send "Resize Mode Active"; mode "resize"
+### Reload / Restart ###
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Yes' 'i3-msg exit'"
+
