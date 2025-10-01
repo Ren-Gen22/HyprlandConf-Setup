@@ -1,0 +1,59 @@
+# Font & Text Format
+font=Hack Nerd Font Mono 12
+format=<b>%s</b>\n%b
+
+# Sorting & Display
+sort=-time
+output=DP-2
+layer=overlay
+anchor=top-right
+
+# Geometry
+width=300
+height=80
+margin=5
+padding=12,5,12
+border-size=2
+border-color=#ffffff
+border-radius=12
+
+# Background & Foreground
+background-color=#161616
+text-color=#E0E0E0
+
+# Icons
+icons=1
+max-icon-size=48
+
+# Timing
+default-timeout=6000
+ignore-timeout=0
+
+# Extra Styling for Urgencies
+[urgency=low]
+background-color=#161616
+text-color=#A6ADC8
+border-color=#FFFFFF
+default-timeout=3000
+
+[urgency=normal]
+background-color=#161616
+text-color=#D9E0EE
+border-color=#FFFFFF
+default-timeout=6000
+
+[urgency=high]
+background-color=#F28FAD
+text-color=#1E1E2E
+border-color=#F28FAD
+default-timeout=0
+
+# App-specific Styles (Optional Extras)
+[app-name=lightcord]
+border-color=#88c0d0
+
+[summary~="log-.*"]
+border-color=#a3be8c
+
+[app-name=lightcord summary~="(.*(^| )orz|ORZ|sto|STO|otl|OTL( |$).*)"]
+invisible=1

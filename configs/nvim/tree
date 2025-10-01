@@ -1,0 +1,14 @@
+
+~/.config/nvim
+├── init.lua
+└── lua
+    └── user
+        ├── options.lua
+        ├── keymaps.lua
+        └── plugins
+            ├── comment.lua
+            ├── lsp.lua
+            ├── neo-tree.lua
+            ├── theme.lua
+            └── treesitter.lua 
+
